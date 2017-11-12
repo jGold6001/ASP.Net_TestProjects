@@ -1,0 +1,10 @@
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Business\bin\Debug\OnionApp.Infrastructure.Business.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Business\bin\Debug\OnionApp.Infrastructure.Business.pdb
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Business\bin\Debug\OnionApp.Domain.Core.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Business\bin\Debug\OnionApp.Services.Interfaces.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Business\bin\Debug\OnionApp.Domain.Core.pdb
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Business\bin\Debug\OnionApp.Services.Interfaces.pdb
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Business\obj\Debug\OnionApp.Infrastructure.Business.csprojResolveAssemblyReference.cache
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Business\obj\Debug\OnionApp.Infrastructure.Business.csproj.CoreCompileInputs.cache
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Business\obj\Debug\OnionApp.Infrastructure.Business.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Business\obj\Debug\OnionApp.Infrastructure.Business.pdb

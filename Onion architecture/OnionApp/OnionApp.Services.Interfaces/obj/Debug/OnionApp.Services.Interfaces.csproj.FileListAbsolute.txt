@@ -1,0 +1,8 @@
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Services.Interfaces\bin\Debug\OnionApp.Services.Interfaces.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Services.Interfaces\bin\Debug\OnionApp.Services.Interfaces.pdb
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Services.Interfaces\bin\Debug\OnionApp.Domain.Core.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Services.Interfaces\bin\Debug\OnionApp.Domain.Core.pdb
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Services.Interfaces\obj\Debug\OnionApp.Services.Interfaces.csprojResolveAssemblyReference.cache
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Services.Interfaces\obj\Debug\OnionApp.Services.Interfaces.csproj.CoreCompileInputs.cache
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Services.Interfaces\obj\Debug\OnionApp.Services.Interfaces.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Services.Interfaces\obj\Debug\OnionApp.Services.Interfaces.pdb

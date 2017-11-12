@@ -1,0 +1,6 @@
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Domain.Core\bin\Debug\OnionApp.Domain.Core.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Domain.Core\bin\Debug\OnionApp.Domain.Core.pdb
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Domain.Core\obj\Debug\OnionApp.Domain.Core.csprojResolveAssemblyReference.cache
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Domain.Core\obj\Debug\OnionApp.Domain.Core.csproj.CoreCompileInputs.cache
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Domain.Core\obj\Debug\OnionApp.Domain.Core.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Domain.Core\obj\Debug\OnionApp.Domain.Core.pdb

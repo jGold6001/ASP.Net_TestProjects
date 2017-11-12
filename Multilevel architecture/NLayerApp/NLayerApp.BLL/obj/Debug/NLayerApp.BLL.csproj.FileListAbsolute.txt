@@ -1,0 +1,6 @@
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\bin\Debug\NLayerApp.BLL.dll
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\bin\Debug\NLayerApp.BLL.pdb
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\obj\Debug\NLayerApp.BLL.csprojResolveAssemblyReference.cache
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\obj\Debug\NLayerApp.BLL.csproj.CoreCompileInputs.cache
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\obj\Debug\NLayerApp.BLL.dll
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\obj\Debug\NLayerApp.BLL.pdb

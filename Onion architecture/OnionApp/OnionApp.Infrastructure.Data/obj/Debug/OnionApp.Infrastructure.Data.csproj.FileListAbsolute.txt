@@ -1,0 +1,15 @@
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\bin\Debug\OnionApp.Infrastructure.Data.dll.config
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\bin\Debug\OnionApp.Infrastructure.Data.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\bin\Debug\OnionApp.Infrastructure.Data.pdb
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\bin\Debug\EntityFramework.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\bin\Debug\EntityFramework.SqlServer.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\bin\Debug\OnionApp.Domain.Core.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\bin\Debug\OnionApp.Domain.Interfaces.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\bin\Debug\OnionApp.Domain.Core.pdb
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\bin\Debug\OnionApp.Domain.Interfaces.pdb
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\bin\Debug\EntityFramework.xml
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\bin\Debug\EntityFramework.SqlServer.xml
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\obj\Debug\OnionApp.Infrastructure.Data.csprojResolveAssemblyReference.cache
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\obj\Debug\OnionApp.Infrastructure.Data.csproj.CoreCompileInputs.cache
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\obj\Debug\OnionApp.Infrastructure.Data.dll
+F:\ITstep\Subjects\Diplom\OnionApp\OnionApp.Infrastructure.Data\obj\Debug\OnionApp.Infrastructure.Data.pdb
