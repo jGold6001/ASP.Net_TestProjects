@@ -4,3 +4,8 @@ F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp
 F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.DAL\obj\Debug\NLayerApp.DAL.csproj.CoreCompileInputs.cache
 F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.DAL\obj\Debug\NLayerApp.DAL.dll
 F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.DAL\obj\Debug\NLayerApp.DAL.pdb
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.DAL\bin\Debug\NLayerApp.DAL.dll.config
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.DAL\bin\Debug\EntityFramework.dll
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.DAL\bin\Debug\EntityFramework.SqlServer.dll
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.DAL\bin\Debug\EntityFramework.xml
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.DAL\bin\Debug\EntityFramework.SqlServer.xml
