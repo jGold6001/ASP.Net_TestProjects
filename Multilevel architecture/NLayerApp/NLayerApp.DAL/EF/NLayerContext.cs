@@ -7,10 +7,12 @@ namespace NLayerApp.DAL.EF
 {
     public class NLayerContext : DbContext
     {
-        public NLayerContext()
-            : base("name=NLayerContext")
+        
+        public NLayerContext(string connectionString)
+            : base(connectionString)
         {
         }
+
 
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Product> Products { get; set; }
