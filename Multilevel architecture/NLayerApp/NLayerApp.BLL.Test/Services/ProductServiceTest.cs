@@ -8,16 +8,18 @@ using NLayerApp.BLL.Infrastructure;
 using Ninject;
 using NLayerApp.DAL.Interfaces;
 using NLayerApp.DAL.Repositories;
+using System.Collections.Generic;
+using System.Linq;
+using System.Diagnostics;
 
 namespace NLayerApp.BLL.Services.Tests
 {
     [TestClass()]
     public class ProductServiceTest
     {
-        
         IProductService productService;
 
-        [TestInitialize]
+        [TestInitialize()]
         public void init()
         {
             IUnitOfWork unitOfWork = new EFUnitOfWork("NLayerContext");
@@ -31,5 +33,12 @@ namespace NLayerApp.BLL.Services.Tests
             productService.CreateProduct(productDTO);
         }
 
+        [TestMethod()]
+        public void AssignCategoryIsProductExistTest()
+        {
+            ProductDTO productDTO = productService.GetProducts().FirstOrDefault();
+            productService.AssignCategory(productDTO, new CategoryDTO("Mobile phone"));
+            //Assert.AreSame(productService.GetProduct(productDTO.Id), productDTO);
+        }
     }
 }

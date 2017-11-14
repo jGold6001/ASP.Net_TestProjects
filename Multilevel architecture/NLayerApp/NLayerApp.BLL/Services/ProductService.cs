@@ -44,7 +44,8 @@ namespace NLayerApp.BLL.Services
             Category category = (Database.Categories as CategoryRepository).FindByName(categoryDTO.Name);         
             if (category == null)
             {
-                Mapper.Initialize(cfg => cfg.CreateMap<CategoryDTO, Category>());
+                //Mapper.Initialize(cfg => cfg.CreateMap<CategoryDTO, Category>());
+                //DEBUG
                 category = Mapper.Map<CategoryDTO, Category>(categoryDTO);
                 Database.Categories.AddOrUpdate(category);
             }
