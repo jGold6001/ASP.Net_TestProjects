@@ -4,3 +4,10 @@ F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp
 F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\obj\Debug\NLayerApp.BLL.csproj.CoreCompileInputs.cache
 F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\obj\Debug\NLayerApp.BLL.dll
 F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\obj\Debug\NLayerApp.BLL.pdb
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\bin\Debug\AutoMapper.dll
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\bin\Debug\NLayerApp.DAL.dll
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\bin\Debug\EntityFramework.dll
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\bin\Debug\NLayerApp.DAL.pdb
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\bin\Debug\NLayerApp.DAL.dll.config
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\bin\Debug\AutoMapper.xml
+F:\ITstep\Subjects\Diplom\ASP.Net_TestProjects\Multilevel architecture\NLayerApp\NLayerApp.BLL\bin\Debug\EntityFramework.xml
