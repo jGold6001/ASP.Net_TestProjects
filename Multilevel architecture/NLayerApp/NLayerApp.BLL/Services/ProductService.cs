@@ -10,6 +10,7 @@ using AutoMapper;
 using NLayerApp.DAL.Entities;
 using NLayerApp.BLL.Infrastructure;
 using NLayerApp.BLL.BusinessModels;
+using NLayerApp.DAL.Repositories;
 
 namespace NLayerApp.BLL.Services
 {
@@ -31,6 +32,24 @@ namespace NLayerApp.BLL.Services
             Product product = Mapper.Map<ProductDTO, Product>(productDTO);
 
             Database.Products.AddOrUpdate(product);
+            Database.Save();
+        }
+
+        public void AssignCategory(ProductDTO productDTO, CategoryDTO categoryDTO)
+        {
+            Product product = Database.Products.Get(productDTO.Id);
+            if (product == null)
+                throw new ValidationException("Product not found", "");
+
+            Category category = (Database.Categories as CategoryRepository).FindByName(categoryDTO.Name);         
+            if (category == null)
+            {
+                Mapper.Initialize(cfg => cfg.CreateMap<CategoryDTO, Category>());
+                category = Mapper.Map<CategoryDTO, Category>(categoryDTO);
+                Database.Categories.AddOrUpdate(category);
+            }
+                
+            product.Category = category;
             Database.Save();
         }
 
@@ -56,16 +75,6 @@ namespace NLayerApp.BLL.Services
         {
             Mapper.Initialize(cfg => cfg.CreateMap<Product, ProductDTO>());
             return Mapper.Map<IEnumerable<Product>, List<ProductDTO>>(Database.Products.GetAll()); ;
-        }
-
-        public void AssignCategory(ProductDTO productDTO, CategoryDTO categoryDTO)
-        {
-            Product product = Database.Products.Get(productDTO.Id);
-            if (product == null)
-                throw new ValidationException("Product not found", "");
-
-            //GOTO
-
         }
     }
 }
