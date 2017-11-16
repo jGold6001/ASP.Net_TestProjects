@@ -11,12 +11,14 @@ using NLayerApp.DAL.Entities;
 using NLayerApp.BLL.Infrastructure;
 using NLayerApp.BLL.BusinessModels;
 using NLayerApp.DAL.Repositories;
+using AutoMapper.Configuration;
 
 namespace NLayerApp.BLL.Services
 {
     public class ProductService : IProductService
     {
         IUnitOfWork Database { get; set; }
+        IMapper mapper;
 
         public ProductService(IUnitOfWork database)
         {
@@ -28,8 +30,8 @@ namespace NLayerApp.BLL.Services
             //assign discount
             productDTO.Price = new Discount(0.1m).GetDiscountedPrice(productDTO.Price);
 
-            Mapper.Initialize(cfg => cfg.CreateMap<ProductDTO, Product>());
-            Product product = Mapper.Map<ProductDTO, Product>(productDTO);
+            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<ProductDTO, Product>()));
+            Product product = mapper.Map<ProductDTO, Product>(productDTO);
 
             Database.Products.AddOrUpdate(product);
             Database.Save();
@@ -44,9 +46,8 @@ namespace NLayerApp.BLL.Services
             Category category = (Database.Categories as CategoryRepository).FindByName(categoryDTO.Name);         
             if (category == null)
             {
-                //Mapper.Initialize(cfg => cfg.CreateMap<CategoryDTO, Category>());
-                //DEBUG
-                category = Mapper.Map<CategoryDTO, Category>(categoryDTO);
+                IMapper categoryMapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<CategoryDTO, Category>()));
+                category = categoryMapper.Map<CategoryDTO, Category>(categoryDTO);
                 Database.Categories.AddOrUpdate(category);
             }
                 
@@ -68,14 +69,27 @@ namespace NLayerApp.BLL.Services
             if(product == null)
                 throw new ValidationException("Product not found", "");
 
-            Mapper.Initialize(cfg => cfg.CreateMap<Product, ProductDTO>());
-            return Mapper.Map<Product, ProductDTO>(product); ;
+            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Product, ProductDTO>()));
+            return mapper.Map<Product, ProductDTO>(product); ;
         }
 
         public IEnumerable<ProductDTO> GetProducts()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Product, ProductDTO>());
-            return Mapper.Map<IEnumerable<Product>, List<ProductDTO>>(Database.Products.GetAll()); ;
+            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Product, ProductDTO>()));
+            return mapper.Map<IEnumerable<Product>, List<ProductDTO>>(Database.Products.GetAll()); ;
+        }
+
+        public void DeleteProduct(int? id)
+        {
+            if (id == null)
+                throw new ValidationException("Not set 'id' of product", "");
+
+            var product = Database.Products.Get(id.Value);
+            if (product == null)
+                throw new ValidationException("Product not found", "");
+
+            Database.Products.Delete(product);
+            Database.Save();
         }
     }
 }

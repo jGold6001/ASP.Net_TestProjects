@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="NLayerApp.DAL.Test.Repositories.EFUnitOfWorkTest.TestFindByProductOfStore" /><Add Test="NLayerApp.DAL.Test.Repositories.EFUnitOfWorkTest.TestAddOrUpdate" /><Add Test="NLayerApp.DAL.Test.Repositories.EFUnitOfWorkTest.TestDelete" /><Add Test="NLayerApp.DAL.Test.Repositories.EFUnitOfWorkTest.TestFindByCategoryOfProduct" /></Playlist>

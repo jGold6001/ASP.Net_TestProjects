@@ -11,6 +11,7 @@ using NLayerApp.DAL.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
+using NLayerApp.DAL.Entities;
 
 namespace NLayerApp.BLL.Services.Tests
 {
@@ -18,27 +19,55 @@ namespace NLayerApp.BLL.Services.Tests
     public class ProductServiceTest
     {
         IProductService productService;
+        IUnitOfWork unitOfWork;
 
+        
         [TestInitialize()]
         public void init()
         {
-            IUnitOfWork unitOfWork = new EFUnitOfWork("NLayerContext");
+            unitOfWork = new EFUnitOfWork("NLayerContext");
             productService = new ProductService(unitOfWork);
+            productService.CreateProduct(new ProductDTO("Philips", 1100m));
         }
 
         [TestMethod()]
-        public void CreateProductTest()
+        public void AssignCategoryIsProductAndCategotyExistTest()
         {
-            ProductDTO productDTO = new ProductDTO("Philips", 1100m);
-            productService.CreateProduct(productDTO);
-        }
+            //add category to db
+            unitOfWork.Categories.AddOrUpdate(new Category("Mobile phone"));
+            unitOfWork.Save();
 
-        [TestMethod()]
-        public void AssignCategoryIsProductExistTest()
-        {
             ProductDTO productDTO = productService.GetProducts().FirstOrDefault();
             productService.AssignCategory(productDTO, new CategoryDTO("Mobile phone"));
-            //Assert.AreSame(productService.GetProduct(productDTO.Id), productDTO);
+
+            //check of test
+            Product productInDb = unitOfWork.Products.Get(productDTO.Id);
+            Assert.AreEqual(productInDb.CategoryId, unitOfWork.Categories.FindBy(c => c.Name == "Mobile phone").FirstOrDefault().Id);
+            DeleteData();
+        }
+
+        [TestMethod()]
+        public void AssignCategoryIsOnlyProductExistTest()
+        {          
+            ProductDTO productDTO = productService.GetProducts().FirstOrDefault();
+            productService.AssignCategory(productDTO, new CategoryDTO("IPad"));
+
+            //check of test
+            Product productInDb = unitOfWork.Products.Get(productDTO.Id);
+            Assert.AreEqual(productInDb.CategoryId, unitOfWork.Categories.FindBy(c => c.Name == "IPad").FirstOrDefault().Id);
+            DeleteData();
+        }
+
+       
+        public void DeleteData()
+        {
+            foreach (var item in productService.GetProducts())
+                productService.DeleteProduct(item.Id);
+               
+            foreach (var item in unitOfWork.Categories.GetAll())
+                unitOfWork.Categories.Delete(item);
+
+            unitOfWork.Save();
         }
     }
 }

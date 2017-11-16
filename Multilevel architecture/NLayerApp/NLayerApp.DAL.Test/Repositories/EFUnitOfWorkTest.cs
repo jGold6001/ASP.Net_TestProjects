@@ -3,10 +3,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLayerApp.DAL.Repositories;
 using System.Collections.Generic;
 using NLayerApp.DAL.Entities;
-using NLayerApp.DataForTesting;
 using NLayerApp.DAL.Interfaces;
 using System.Linq;
 using System.Diagnostics;
+using NLayerApp.DataForTesting;
 
 namespace NLayerApp.DAL.Test.Repositories
 {

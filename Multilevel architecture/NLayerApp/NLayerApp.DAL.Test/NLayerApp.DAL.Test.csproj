@@ -55,6 +55,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataForTesting\CategoriesCollection.cs" />
+    <Compile Include="DataForTesting\ProductsCollection.cs" />
+    <Compile Include="DataForTesting\StoreCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EFUnitOfWorkTest.cs" />
   </ItemGroup>
@@ -66,10 +69,6 @@
     <ProjectReference Include="..\NLayerApp.DAL\NLayerApp.DAL.csproj">
       <Project>{2107fde9-cc7c-4b51-bbc9-47aa22b79849}</Project>
       <Name>NLayerApp.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NLayerApp.DataForTesting\NLayerApp.DataForTesting.csproj">
-      <Project>{44ad8269-5692-46ff-9f5d-f1ec696b59bd}</Project>
-      <Name>NLayerApp.DataForTesting</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

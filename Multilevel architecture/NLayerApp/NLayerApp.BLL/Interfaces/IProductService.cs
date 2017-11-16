@@ -13,6 +13,7 @@ namespace NLayerApp.BLL.Interfaces
         void AssignCategory(ProductDTO productDTO, CategoryDTO categoryDTO);
         ProductDTO GetProduct(int? id);
         IEnumerable<ProductDTO> GetProducts();
+        void DeleteProduct(int? id);
         void Dispose();
     }
 }
