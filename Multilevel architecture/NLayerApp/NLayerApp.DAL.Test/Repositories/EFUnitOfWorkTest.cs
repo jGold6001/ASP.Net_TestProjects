@@ -40,7 +40,8 @@ namespace NLayerApp.DAL.Test.Repositories
         public void TestAddOrUpdate()
         {
             //add
-            User user = new User("Jake", 27);
+            DateTime dtRegistration = DateTime.Now;
+            User user = new User("Jake", 27, dtRegistration);
             userRepo.AddOrUpdate(user);
             unitOfwork.Save();
             User userInDb = userRepo.FindByName("Jake");
@@ -86,6 +87,8 @@ namespace NLayerApp.DAL.Test.Repositories
 
             unitOfwork.Dispose();
         }
+
+
 
         [TestMethod]
         public void TestFindByProductOfStore()

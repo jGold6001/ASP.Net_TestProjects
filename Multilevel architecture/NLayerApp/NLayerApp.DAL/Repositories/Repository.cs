@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using System.Data.Entity.Migrations;
 using NLayerApp.DAL.Interfaces;
+using System.Data.SqlClient;
 
 namespace NLayerApp.DAL.Repositories
 {
