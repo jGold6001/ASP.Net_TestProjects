@@ -11,14 +11,15 @@ namespace NLayerApp.DAL.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
-
+        public DateTime Registration { get; set; }
         public User()
         {
 
         }
 
-        public User(string name, int age)
+        public User(string name, int age, DateTime registration)
         {
+            Registration = registration;
             Name = name;
             Age = age;
         }
