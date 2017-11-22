@@ -11,12 +11,14 @@ namespace NLayerApp.BLL.DTO
         public int Id { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
+        public DateTime Registration { get; set; }
         public UserDTO()
         {
 
         }
-        public UserDTO(string name, int age)
+        public UserDTO(string name, int age, DateTime registration)
         {
+            Registration = registration;
             Name = name;
             Age = age;
         }

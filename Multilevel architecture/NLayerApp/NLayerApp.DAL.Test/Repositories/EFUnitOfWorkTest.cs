@@ -40,7 +40,7 @@ namespace NLayerApp.DAL.Test.Repositories
         public void TestAddOrUpdate()
         {
             //add
-            DateTime dtRegistration = DateTime.Now.Date.AddDays(-2).AddHours(12).AddMinutes(10);
+            DateTime dtRegistration = DateTime.Now.Date.AddDays(-2).AddHours(12.50);
             User user = new User("Jake", 27, dtRegistration);
             userRepo.AddOrUpdate(user);
             unitOfwork.Save();

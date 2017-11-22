@@ -10,8 +10,8 @@ namespace NLayerApp.DAL.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Age { get; set; }
-        public DateTime Registration { get; set; }
+        public int? Age { get; set; }
+        public DateTime? Registration { get; set; }
         public User()
         {
 

@@ -76,7 +76,7 @@ namespace NLayerApp.BLL.Services
         public IEnumerable<ProductDTO> GetProducts()
         {
             mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Product, ProductDTO>()));
-            return mapper.Map<IEnumerable<Product>, List<ProductDTO>>(Database.Products.GetAll()); ;
+            return mapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(Database.Products.GetAll()); ;
         }
 
         public void DeleteProduct(int? id)

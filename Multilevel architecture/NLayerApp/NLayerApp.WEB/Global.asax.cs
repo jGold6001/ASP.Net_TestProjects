@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Ninject;
+using Ninject.Modules;
+using Ninject.Web.Mvc;
+using NLayerApp.BLL.Infrastructure;
+using NLayerApp.WEB.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +18,12 @@ namespace NLayerApp.WEB
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            // внедрение зависимостей
+            NinjectModule orderModule = new ProductModule();
+            NinjectModule serviceModule = new ServiceModule("NLayerContext");
+            var kernel = new StandardKernel(orderModule, serviceModule);
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }
 }
