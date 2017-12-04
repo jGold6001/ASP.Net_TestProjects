@@ -2,6 +2,8 @@
 
     $('#chatBody').hide();
     $('#loginBlock').show();
+
+
     //Reference to the auto- generated hub proxy
     var chat = $.connection.chatHub;
 
@@ -26,20 +28,17 @@
 
         // Add all users
         for (i = 0; i < allUsers.length; i++) {
-
             AddUser(allUsers[i].ConnectionId, allUsers[i].Name);
         }
     }
 
     // Add a new user
     chat.client.onNewUserConnected = function (id, name) {
-
         AddUser(id, name);
     }
 
     // Delete the user
     chat.client.onUserDisconnected = function (id, userName) {
-
         $('#' + id).remove();
     }
 
@@ -50,7 +49,6 @@
 
             // Call the Send method on the hub
             chat.server.send($('#username').val(), $('#message').val());
-            $('#message').val('');
         });
 
         // handle login
@@ -79,7 +77,6 @@ function AddUser(id, name) {
     var userId = $('#hdId').val();
 
     if (userId != id) {
-
         $("#chatusers").append('<p id="' + id + '"><b>' + name + '</b></p>');
     }
 }

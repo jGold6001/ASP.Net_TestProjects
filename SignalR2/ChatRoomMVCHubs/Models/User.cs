@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SignalRMvc.Models
+namespace ChatRoomMVCHubs.Models
 {
     public class User
     {

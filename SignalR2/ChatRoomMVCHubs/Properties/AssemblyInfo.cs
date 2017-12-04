@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SignalRMvc")]
+[assembly: AssemblyTitle("ChatRoomMVCHubs")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SignalRMvc")]
+[assembly: AssemblyProduct("ChatRoomMVCHubs")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3b8bd2f7-d7f4-44ce-b1b6-32d7a5d61016")]
+[assembly: Guid("adc87995-031b-469d-9120-04748bf46f14")]
 
 // Version information for an assembly consists of the following four values:
 //
