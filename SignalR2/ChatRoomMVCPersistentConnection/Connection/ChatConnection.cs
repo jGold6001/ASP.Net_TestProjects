@@ -13,7 +13,7 @@ namespace ChatRoomMVCPersistentConnection.Connection
     {
         protected override Task OnConnected(IRequest request, string connectionId)
         {
-            Data chatData = new Data() { Name = "Сообщение сервера", Message = "Пользователь " + connectionId + " присоединился к чату" };
+            Data chatData = new Data() { Name = "Server messege", Message = "User ::->  " + connectionId + " ::-> connect to chat" };
             return Connection.Broadcast(chatData);
         }
 
@@ -23,9 +23,9 @@ namespace ChatRoomMVCPersistentConnection.Connection
             return Connection.Broadcast(chatData);
         }
 
-        protected override Task OnDisconnected(IRequest request, string connectionId)
+        protected override Task OnDisconnected(IRequest request, string connectionId, bool stopCalled)
         {
-            Data chatData = new Data() { Name = "Сообщение сервера", Message = "Пользователь " + connectionId + " покинул чат" };
+            Data chatData = new Data() { Name = "Server messege", Message = "User ::-> " + connectionId + " ::-> exit from chat" };
             return Connection.Broadcast(chatData);
         }
     }

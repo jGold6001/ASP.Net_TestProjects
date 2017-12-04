@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        canvas {
+            position: relative;
+            background-color: #ffd800;
+        }
+    </style>
+
+</head>
+<body>
+    <canvas id='drawingpad' width='400' height='300'></canvas>
+
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+
+    <!--Link SignalR -->
+    <script src="/Scripts/jquery.signalR-2.2.2.min.js"></script>
+
+    <!--Link to the automatically generated hub script SignalR -->
+    <script src="/signalr/hubs"></script>
+    <script>
+
+        $(function () {
+
+            var drawGame = {
+
+                //Indicates whether drawing occurs
+                isDrawing: false,
+
+                // starting point of the next line
+                startX: 0,
+                startY: 0,
+            };
+
+            // model of lines
+            var data = {
+                startX:0,
+                startY:0,
+                endX:0,
+                endY:0
+            };
+
+            //canvas context
+            var canvas = document.getElementById('drawingpad');
+            var ctx = canvas.getContext('2d');
+
+             //Link to the auto-generated hub proxy
+             var chat = $.connection.drawHub;
+            // Declaring a function that the hub calls when messages are received
+            chat.client.addLine = function (data) {
+
+                // adding lines
+                drawLine(ctx, data.startX, data.startY, data.endX, data.endY, 1);
+            };
+
+            //Open connection
+            $.connection.hub.start().done(function () {
+
+                    // after opening the connection, set the mouse handlers
+                    canvas.addEventListener("mousedown", mousedown, false);
+                    canvas.addEventListener("mousemove", mousemove, false);
+                    canvas.addEventListener("mouseup", mouseup, false);
+            });
+
+            // drow line
+            function drawLine(ctx, x1, y1, x2, y2, thickness) {
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.lineWidth = thickness;
+                ctx.strokeStyle = "#444";
+                ctx.stroke();
+            }
+
+            // mouse click
+            function mousedown(e) {
+
+                // we get the positions x and y relative to the upper left corner of the canvas
+                var mouseX = e.layerX || 0;
+                var mouseY = e.layerY || 0;
+                drawGame.startX = mouseX;
+                drawGame.startY = mouseY;
+                drawGame.isDrawing = true;
+            };
+
+            // mouse movement
+            function mousemove(e) {
+
+                // drow line, if isdrawing==true
+                if (drawGame.isDrawing) {
+
+                    //we get the positions x and y relative to the upper left corner of the canvas
+                    var mouseX = e.layerX || 0;
+                    var mouseY = e.layerY || 0;
+                    if (!(mouseX == drawGame.startX &&
+                          mouseY == drawGame.startY)) {
+                            drawLine(ctx, drawGame.startX,
+                            drawGame.startY, mouseX, mouseY, 1);
+
+                            data.startX = drawGame.startX;
+                            data.startY = drawGame.startY;
+                            data.endX = mouseX;
+                            data.endY = mouseY;
+                            chat.server.send(data);
+
+                            drawGame.startX = mouseX;
+                            drawGame.startY = mouseY;
+                        }
+                    }
+                };
+
+                function mouseup(e) {
+                    drawGame.isDrawing = false;
+                }
+        });
+    </script>
+</body>
+</html>

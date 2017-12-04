@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatRoomMVCHubs", "ChatRoom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatRoomMVCPersistentConnection", "ChatRoomMVCPersistentConnection\ChatRoomMVCPersistentConnection.csproj", "{460EA5A4-0B68-4845-98BF-05339A45A9BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRDraw", "SignalRDraw\SignalRDraw.csproj", "{1073AB52-B603-4687-ADF5-24F3FF32A3E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{460EA5A4-0B68-4845-98BF-05339A45A9BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{460EA5A4-0B68-4845-98BF-05339A45A9BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{460EA5A4-0B68-4845-98BF-05339A45A9BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1073AB52-B603-4687-ADF5-24F3FF32A3E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1073AB52-B603-4687-ADF5-24F3FF32A3E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1073AB52-B603-4687-ADF5-24F3FF32A3E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1073AB52-B603-4687-ADF5-24F3FF32A3E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
