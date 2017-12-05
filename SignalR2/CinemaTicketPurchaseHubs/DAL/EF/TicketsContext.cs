@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace CinemaTicketPurchaseHubs.EF
+namespace CinemaTicketPurchaseHubs.DAL.EF
 {
     public class TicketsContext : DbContext
     {
