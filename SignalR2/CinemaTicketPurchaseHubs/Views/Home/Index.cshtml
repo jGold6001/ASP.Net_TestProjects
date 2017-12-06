@@ -3,63 +3,95 @@
     ViewBag.Title = "Index";
 }
 
+<link href="~/Content/styles.css" rel="stylesheet" type="text/css" />
+
 <h2 id="hall_number">Hall: 1</h2>
 
 <main>
     <!--info about places-->
     <section class="row" id="places_info">
-        <div class="col-lg-4" id="prices">
+        <div class="col-lg-6">
+            <div class="col-lg-4" id="prices">
 
+            </div>
+
+            <div class="col-lg-4" id="frees">
+
+            </div>
+
+            <div class="col-lg-4" id="busies">
+
+            </div>
         </div>
-
-        <div class="col-lg-4" id="frees">
-
-        </div>
-
-        <div class="col-lg-4" id="busies">
-
-        </div>
+        <div class="col-lg-6"></div>       
     </section>
 
-    <!--information-->
-    <section class="row" id="information">
-        <div class="col-lg-4" id="movie_block">
-            <b>Movie: </b>
-        </div>
-        <div class="col-lg-4" id="cinema_block">
-            <b>Cinema: </b>
-        </div>
-        <div class="col-lg-4" id="seance_block">
-            <b>Seance: </b>
-        </div>
-    </section>
     <br />
 
-    <!--hall-->
-    <section class="row" id="hall_scheme">
+    
+    <div class="row">        
+        <div class="col-lg-6">
+            <!--hall-->
+            <section id="hall_scheme">
+                
+                <div class="row">
+                    <div class="col-lg-2">Row 1</div>
+                    <div class="col-lg-8">
+                        <div class="col" id="row_1"></div>
+                    </div>
+                    <div class="col-lg-2">Row 1</div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2">Row 2</div>
+                    <div class="col-lg-8">
+                        <div class="col" id="row_2"></div>
+                    </div>
+                    <div class="col-lg-2">Row 2</div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2">Row 3</div>
+                    <div class="col-lg-8">
+                        <div class="col" id="row_3"></div>
+                    </div>
+                    <div class="col-lg-2">Row 3</div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2">Row 4</div>
+                    <div class="col-lg-8">
+                        <div class="col" id="row_4"></div>
+                    </div>
+                    <div class="col-lg-2">Row 4</div>
+                </div>
+            </section>           
+        </div>          
+        <div class="col-lg-2">
+            <!--information-->
+            <section id="information">              
+                <div class="row" id="movie_block">
+                    <b>Movie: </b>
+                </div>
+                <br />
+                <div class="row" id="cinema_block">
+                    <b>Cinema: </b>
+                </div>
+                <br />
+                <div class="row" id="seance_block">
+                    <b>Seance: </b>
+                </div>
+            </section>
+        </div>
         <div class="col-lg-4"></div>
-        <div class="col-lg-4">
-            <div class="row">
-                <div class="col" id="row_1"></div>
-            </div>
-            <div class="row">
-                <div class="col" id="row_2"></div>
-            </div>
-            <div class="row">
-                <div class="col" id="row_3"></div>
-            </div>
-            <div class="row">
-                <div class="col" id="row_4"></div>
-            </div>
-        </div>         
         <div class="col-lg-4"></div>
-    </section>
+    </div>
 </main>
 
 
 @section scripts{
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
+
+<script src="/Scripts/jquery.signalR-2.2.2.min.js"></script>
+<script src="/signalr/hubs"></script>
 <script type="text/javascript">
     $(function () { 
         $.date = function (dateObject) {
@@ -88,13 +120,50 @@
             var date    = $.date($.now());           //date
             var seance  = "19:00";                   //time
 
+            var ticket_hub = $.connection.ticketsHub;
+
+            ticket_hub.client.addData = function (data) {
+                console.log(data);
+            }
+
+            //create buttons places
             places.forEach(function (item, index) {
                 $('#row_' + item.row).append(
-                    '<button>' + item.num + '</button>'                    
+                    '<button class="btn_place" id="place_' + item.row + '_' + item.num + '">' + item.num + '</button>'                    
                 );
             });
 
-            $('#')
+            //set information
+            $('#movie_block').append(movie);
+            $('#cinema_block').append(cinema);
+            $('#seance_block').append(date + " " + seance);
+           
+            //click event
+            function btnsClick(e) {
+
+                //get object
+                var ticket = e.data.obj;
+
+                //get id
+                var place_id = e.currentTarget.id;
+
+
+                //change color button
+                if (!$('#' + place_id).hasClass("btn btn-primary")) {
+                    $('#' + place_id).addClass("btn btn-primary");
+                } else {
+                    $('#' + place_id).removeClass("btn btn-primary");
+                }
+                ticket_hub.server.send(ticket);
+            } 
+
+            $.connection.hub.start().done(function () {
+                //set handles for buttons
+                places.forEach(function (item, index) {
+                    $('#place_' + item.row + '_' + item.num).on("click", { obj: item }, btnsClick);
+                });
+            });
+
         });
     });
 </script>

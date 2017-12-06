@@ -13,5 +13,10 @@ namespace ChatRoomMVCHubs.Controllers
         {
             return View();
         }
+
+        public ActionResult Testing()
+        {
+            return View();
+        }
     }
 }

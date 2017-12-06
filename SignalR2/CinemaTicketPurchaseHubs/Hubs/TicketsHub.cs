@@ -11,18 +11,7 @@ namespace CinemaTicketPurchaseHubs.Hubs
     {
         public void Send(object Ticket)
         {
-            //GOTO
-        }
-
-        public void Connect()
-        {
-            //GOTO
-        }
-
-        public override Task OnDisconnected(bool stopCalled)
-        {
-           
-            return base.OnDisconnected(stopCalled);
+            Clients.All.addData(Ticket);
         }
 
     }
