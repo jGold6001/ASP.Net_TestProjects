@@ -149,6 +149,7 @@
     <Compile Include="BLL\Infrastructure\JSONManager.cs" />
     <Compile Include="BLL\Services\TicketService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\EF\Purchase.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

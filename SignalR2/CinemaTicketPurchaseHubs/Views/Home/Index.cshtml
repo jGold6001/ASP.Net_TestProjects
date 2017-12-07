@@ -30,7 +30,7 @@
 
     
     <div class="row">        
-        <div class="col-lg-6">
+        <div class="col-lg-8">
             <!--hall-->
             <section id="hall_scheme">
                 
@@ -66,7 +66,26 @@
         </div>          
         <div class="col-lg-2">
             <!--information-->
-            <section id="information">              
+            <section id="information">
+                <div class="row">
+                    <section id="select_place">
+                        <h5><b>Selected places</b></h5>
+                        <div class="row" style="border-bottom: 1px solid grey" id="sel_place_header">
+                            <p class="col-lg-2">Row</p>
+                            <p class="col-lg-3">Place</p>
+                            <p class="col-lg-5">Price</p>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        <div id="data_block"></div>                      
+                        <div class="row" id="total_sum">
+                            <h5><b>Total sum: </b><span></span></h5>
+                        </div>
+                        <div class="row">
+                            <button class="col-lg-12" id="next_step">Next step</button>
+                        </div>
+                    </section>
+                </div>
+                <br/>
                 <div class="row" id="movie_block">
                     <b>Movie: </b>
                 </div>
@@ -78,9 +97,10 @@
                 <div class="row" id="seance_block">
                     <b>Seance: </b>
                 </div>
+
             </section>
         </div>
-        <div class="col-lg-4"></div>
+        <div class="col-lg-2"></div>
         <div class="col-lg-4"></div>
     </div>
 </main>
@@ -118,52 +138,131 @@
             var hall    = 1;                         //hall
             var movie   = "Тор.Рагнарок";            //movie
             var date    = $.date($.now());           //date
-            var seance  = "19:00";                   //time
+            var seance = "19:00";                    //time
 
-            var ticket_hub = $.connection.ticketsHub;
+            //static value sum
+            var sum = 0; 
 
-            ticket_hub.client.addData = function (data) {
-                console.log(data);
-            }
+            //places's collection 
+            var placesArray = new Array();
 
-            //create buttons places
-            places.forEach(function (item, index) {
-                $('#row_' + item.row).append(
-                    '<button class="btn_place" id="place_' + item.row + '_' + item.num + '">' + item.num + '</button>'                    
-                );
-            });
+            //selected
+            var selectedPlaces = new Array();
+
+            //busy
+            var busyPlaces = new Array();
 
             //set information
             $('#movie_block').append(movie);
             $('#cinema_block').append(cinema);
             $('#seance_block').append(date + " " + seance);
-           
-            //click event
-            function btnsClick(e) {
 
-                //get object
-                var ticket = e.data.obj;
+            //hide block select place
+            $('#select_place').hide();
 
-                //get id
-                var place_id = e.currentTarget.id;
-
-
-                //change color button
-                if (!$('#' + place_id).hasClass("btn btn-primary")) {
-                    $('#' + place_id).addClass("btn btn-primary");
-                } else {
-                    $('#' + place_id).removeClass("btn btn-primary");
-                }
-                ticket_hub.server.send(ticket);
-            } 
-
-            $.connection.hub.start().done(function () {
-                //set handles for buttons
-                places.forEach(function (item, index) {
-                    $('#place_' + item.row + '_' + item.num).on("click", { obj: item }, btnsClick);
-                });
+            //create buttons places
+            places.forEach(function (item, index) {
+                $('#row_' + item.row).append(
+                    '<button class="btn_place" id="place_' + item.row + '_' + item.num + '">' + item.num + '</button>'
+                );
             });
 
+            var ticket_hub = $.connection.ticketsHub;
+
+            ticket_hub.client.addData = function (data) {
+                selectedPlaces = data;
+                console.log(selectedPlaces);
+            }
+
+
+            $.connection.hub.start().done(function () {
+                $('#next_step').on('click', function () {
+
+                    var is_similar = false;
+
+                    //check isSelectedPlaces
+                    placesArray.forEach(function (common, index_c) {
+                        selectedPlaces.forEach(function (selected, index_b) {
+                            if (selected.row == common.row && selected.num == common.num)
+                                is_similar = true;
+                        });
+                    });
+
+                    if (!is_similar) {
+                        console.log("data send");
+                        ticket_hub.server.send(placesArray);
+                    }                     
+                    else {
+                        alert("sorry, places are  busies");
+                        is_similar = false;
+                    }
+                    //send other clients
+                    
+                });   
+            });
+
+
+
+            //set handles for buttons
+            places.forEach(function (item, index) {
+                $('#place_' + item.row + '_' + item.num).on("click", { obj: item }, btnsClick);
+            });
+
+            //click event
+            function btnsClick(e) {              
+                var place = e.data.obj;
+                var place_id = '#' + e.currentTarget.id;
+                var sel_place = $('#select_place');
+
+                //isButtonClicked
+                if (!$(place_id).hasClass("btn btn-primary")) {
+                    //enable blue color of btn
+                    $(place_id).addClass("btn btn-primary");
+
+                    sel_place.show(); //sel_place_header
+                    $('#data_block').append(
+                        '<div class="row place" id="_place_' + place.row + '_' + place.num+'" style="border-bottom: 1px solid grey">' +
+                            '<p class="col-lg-2" > ' + place.row + '</p >' +
+                            '<p class="col-lg-3">' +  place.num+ '</p>' +
+                            '<p class="col-lg-5">' + place.price + ' grn</p>' +                           
+                        '</div >'
+                    );
+
+                    //calk total sum
+                    sum += place.price;                   
+                    $('#total_sum').find('h5').find('span').empty();
+
+                    //add to array of places
+                    placesArray.push(place);
+                  
+                } else {
+                    //disable color
+                    $(place_id).removeClass("btn btn-primary");
+
+                    //remove place
+                    $('#_place_' + place.row + '_' + place.num).remove();
+                   
+                    //isNotplace
+                    if ($('#data_block').children().length == 0) {
+                        sel_place.hide();
+                    }
+
+                    //calk total sum
+                    $('#total_sum').find('h5').find('span').empty();
+                    sum -= place.price;
+
+                    places.forEach(function (item, index) {
+                        if (item.row == place.row && item.num == place.num)
+                            delete placesArray[index];
+                    });                   
+                   
+                }
+
+                //set total sum
+                $('#total_sum').find('h5').find('span').append(sum + " grn");
+
+            } 
+            
         });
     });
 </script>

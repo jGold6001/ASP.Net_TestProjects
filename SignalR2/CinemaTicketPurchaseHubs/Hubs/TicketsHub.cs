@@ -4,14 +4,15 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
+using CinemaTicketPurchaseHubs.Models;
 
 namespace CinemaTicketPurchaseHubs.Hubs
 {
     public class TicketsHub : Hub
     {
-        public void Send(object Ticket)
+        public void Send(object[] places)
         {
-            Clients.All.addData(Ticket);
+            Clients.AllExcept(Context.ConnectionId).addData(places);
         }
 
     }

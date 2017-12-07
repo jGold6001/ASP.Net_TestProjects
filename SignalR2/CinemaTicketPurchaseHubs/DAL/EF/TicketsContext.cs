@@ -13,5 +13,6 @@ namespace CinemaTicketPurchaseHubs.DAL.EF
         }
         
         public virtual DbSet<Ticket> Tickets { get; set; }
+        public virtual DbSet<Purchase> Purchases { get; set; }
     }
 }
