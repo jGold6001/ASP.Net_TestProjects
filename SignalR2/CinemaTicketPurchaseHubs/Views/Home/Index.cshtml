@@ -129,10 +129,40 @@
             return date;
         };
 
+         function isBusies(selectedPlaces, busiesPlaces) {
+                if (busiesPlaces.length != 0 && selectedPlaces.length != 0) {
+                    let flag = false;
+                    selectedPlaces.forEach(function (item_1, index_1) {
+                        busiesPlaces.forEach(function (item_2, index_2) {
+                            if (item_2.id == item_1.id)
+                                flag = true;
+                        });
+                    });
+                    return flag;
+                }              
+        }
+
+         function addPropertyId(arr) {
+             arr.forEach(function (item, index) {
+                 item.id = index + 1;
+             });
+         }
+
+         function createButtons(arr) {
+             arr.forEach(function (item, index) {
+                 $('#row_' + item.row).append(
+                     '<button class="btn_place" id="place_' + item.id + '">' + item.num + '</button>'
+                 );
+             });
+         }
+
         $.getJSON("/Resources/Json/mpx_skymall/hall_1.json", function (data) {
 
             //array of halls
             var places = data;
+
+            //set place -> id           
+            addPropertyId(places);         
 
             var cinema  = "Multiplex Sky Mall";      //cinema
             var hall    = 1;                         //hall
@@ -140,129 +170,128 @@
             var date    = $.date($.now());           //date
             var seance = "19:00";                    //time
 
-            //static value sum
-            var sum = 0; 
-
-            //places's collection 
-            var placesArray = new Array();
-
-            //selected
-            var selectedPlaces = new Array();
-
-            //busy
-            var busyPlaces = new Array();
-
             //set information
             $('#movie_block').append(movie);
             $('#cinema_block').append(cinema);
             $('#seance_block').append(date + " " + seance);
 
+
+            //static value sum
+            var sum = 0;
+
+            //places's collection 
+            var placesArray = new Array();
+
+            var busies = new Array();
+
             //hide block select place
             $('#select_place').hide();
 
+
             //create buttons places
-            places.forEach(function (item, index) {
-                $('#row_' + item.row).append(
-                    '<button class="btn_place" id="place_' + item.row + '_' + item.num + '">' + item.num + '</button>'
-                );
-            });
+            createButtons(places);
+           
 
             var ticket_hub = $.connection.ticketsHub;
 
+            //get data others clients
             ticket_hub.client.addData = function (data) {
-                selectedPlaces = data;
-                console.log(selectedPlaces);
+
+                //add to busies
+                data.forEach(function (item, index) {
+                    busies.push(item);
+                });
+
+                console.log(busies);
             }
 
-
+           
+            //next step
             $.connection.hub.start().done(function () {
                 $('#next_step').on('click', function () {
 
-                    var is_similar = false;
-
-                    //check isSelectedPlaces
-                    placesArray.forEach(function (common, index_c) {
-                        selectedPlaces.forEach(function (selected, index_b) {
-                            if (selected.row == common.row && selected.num == common.num)
-                                is_similar = true;
+                    if (!isBusies(placesArray, busies)) {
+                        //block buttons
+                        placesArray.forEach(function (item, index) {
+                            $('#place_' + item.id).addClass('btn btn-warning');
+                            $('#place_' + item.id).attr("disabled", true);
                         });
-                    });
 
-                    if (!is_similar) {
-                        console.log("data send");
+                        //send to server
                         ticket_hub.server.send(placesArray);
-                    }                     
-                    else {
-                        alert("sorry, places are  busies");
-                        is_similar = false;
+                    } else {
+                        alert("sorry, places is busies ");
+
+                        //mark busies places
+                        busies.forEach(function (item, index) {
+                            $('#place_' + item.id).addClass('btn btn-success');
+                            $('#place_' + item.id).attr("disabled", true);
+                        });
+
+                        //clear busies
+                        busies.length = 0;
+                        placesArray.length = 0;
                     }
-                    //send other clients
-                    
                 });   
             });
 
 
-
             //set handles for buttons
             places.forEach(function (item, index) {
-                $('#place_' + item.row + '_' + item.num).on("click", { obj: item }, btnsClick);
-            });
+                $('#place_' + item.id ).on("click", { obj: item }, function (e) {
+                    var place = e.data.obj;
+                    var place_id = '#' + e.currentTarget.id;
+                    var sel_place = $('#select_place');
 
-            //click event
-            function btnsClick(e) {              
-                var place = e.data.obj;
-                var place_id = '#' + e.currentTarget.id;
-                var sel_place = $('#select_place');
+                    //isButtonClicked
+                    if (!$(place_id).hasClass("btn btn-primary")) {
+                        //enable blue color of btn
+                        $(place_id).addClass("btn btn-primary");
 
-                //isButtonClicked
-                if (!$(place_id).hasClass("btn btn-primary")) {
-                    //enable blue color of btn
-                    $(place_id).addClass("btn btn-primary");
+                        sel_place.show(); //sel_place_header
+                        $('#data_block').append(
+                            '<div class="row place" id="_place_' + place.id + '" style="border-bottom: 1px solid grey">' +
+                                '<p class="col-lg-2" > ' + place.row + '</p >' +
+                                '<p class="col-lg-3">' + place.num + '</p>' +
+                                '<p class="col-lg-5">' + place.price + ' grn</p>' +
+                            '</div >'
+                        );
 
-                    sel_place.show(); //sel_place_header
-                    $('#data_block').append(
-                        '<div class="row place" id="_place_' + place.row + '_' + place.num+'" style="border-bottom: 1px solid grey">' +
-                            '<p class="col-lg-2" > ' + place.row + '</p >' +
-                            '<p class="col-lg-3">' +  place.num+ '</p>' +
-                            '<p class="col-lg-5">' + place.price + ' grn</p>' +                           
-                        '</div >'
-                    );
+                        //calk total sum
+                        sum += place.price;
+                        $('#total_sum').find('h5').find('span').empty();
 
-                    //calk total sum
-                    sum += place.price;                   
-                    $('#total_sum').find('h5').find('span').empty();
+                        //add to array of places
+                        placesArray.push(place);
 
-                    //add to array of places
-                    placesArray.push(place);
-                  
-                } else {
-                    //disable color
-                    $(place_id).removeClass("btn btn-primary");
+                    } else {
+                        //disable color
+                        $(place_id).removeClass("btn btn-primary");
 
-                    //remove place
-                    $('#_place_' + place.row + '_' + place.num).remove();
-                   
-                    //isNotplace
-                    if ($('#data_block').children().length == 0) {
-                        sel_place.hide();
+                        //remove place
+                        $('#_place_' + place.id).remove();
+
+                        //isNotplace
+                        if ($('#data_block').children().length == 0)
+                            sel_place.hide();
+
+                        //calk total sum
+                        $('#total_sum').find('h5').find('span').empty();
+                        sum -= place.price;
+
+                        //delete places
+                        placesArray.forEach(function (item, index) {
+                            if (item.row == place.row && item.num == place.num)
+                                delete placesArray[index];
+                        });
+
                     }
 
-                    //calk total sum
-                    $('#total_sum').find('h5').find('span').empty();
-                    sum -= place.price;
+                    //set total sum
+                    $('#total_sum').find('h5').find('span').append(sum + " grn");
 
-                    places.forEach(function (item, index) {
-                        if (item.row == place.row && item.num == place.num)
-                            delete placesArray[index];
-                    });                   
-                   
-                }
-
-                //set total sum
-                $('#total_sum').find('h5').find('span').append(sum + " grn");
-
-            } 
-            
+                });
+            });
         });
     });
 </script>

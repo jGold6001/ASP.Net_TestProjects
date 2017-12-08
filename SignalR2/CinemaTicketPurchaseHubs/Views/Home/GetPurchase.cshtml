@@ -1,0 +1,48 @@
+﻿@model CinemaTicketPurchaseHubs.DAL.EF.Purchase
+
+@{
+    ViewBag.Title = "GetPurchase";
+}
+
+<h2>Purchase</h2>
+
+<main class="container">
+    <div class="row">
+        <section class="col-lg-2"></section>
+        <section class="col-lg-4">
+            <div class="row">
+                <b><p>Time and Place: </p></b>
+                <p>12:30 Kiev Some Cinema</p>
+            </div>
+            <div class="row">
+                <b><p>Movie(Type D): </p></b>
+                <p>Rangnarog</p>
+            </div>
+        </section>
+        <section class="col-lg-4">
+            <section id="select_place">
+                <h5><b>Selected places</b></h5>
+                <div class="row" style="border-bottom: 1px solid grey" id="sel_place_header">
+                    <p class="col-lg-2">Row</p>
+                    <p class="col-lg-3">Place</p>
+                    <p class="col-lg-5">Price</p>
+                    <div class="col-lg-2"></div>
+                </div>
+                <div id="data_block">
+
+                </div>
+                <div class="row" id="total_sum">
+                    <h5><b>Total sum: </b><span></span></h5>
+                </div>
+            </section>
+        </section>
+        <section class="col-lg-2"></section>
+    </div>
+    <div class="row" style="border-top:1px solid grey">
+        <br/>
+        <div class="col-lg-2"></div>
+        <button class="col-lg-2" id="buy">Buy</button>
+        <div class="col-lg-8">
+    </div>
+    </div>
+</main>
